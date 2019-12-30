@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styles from './user.module.css'
 class User extends React.Component{
     state={
         name:"",
@@ -38,7 +38,7 @@ class User extends React.Component{
         })
         return(
             <div>
-                <p>You have entered {this.state.name}</p>
+                <p className={styles.main}>You have entered {this.state.name}</p>
                 <input type="text" onChange={this.onTextChangeHandler}/>
                 <h4>Items added:-----</h4><br/>
                 {items}
