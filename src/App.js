@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 //import Person  from './Person/Person'
 import User from './Person/User'
-
+import Radium from 'radium'
 class App extends React.Component{
   state={
     persons:[
@@ -27,11 +27,24 @@ class App extends React.Component{
 
   //Render method calles everytime when state is changed
   render(){
+    const style={
+      backgroundColor:'green',
+      color:'white',
+      ':hover':{
+        backgroundColor:'lightgreen',
+        color:'black'
+      }
+    };
     let usrcomponent=null;
     if(this.state.isUserComponentDisplay){
       usrcomponent=(
-        <User />
+        <User /> 
       );
+      style.backgroundColor='red';
+      style[':hover']={
+        backgroundColor:'salmon',
+        color:'black'
+      }
     }
     return (
       <div className="App">
@@ -42,8 +55,8 @@ class App extends React.Component{
         } */}
         {usrcomponent}
         <br/>
-      <button onClick={this.ShowHideUserComponent}>{this.state.isUserComponentDisplay?'Hide':'Show'}</button>
-
+      <button style={style} onClick={this.ShowHideUserComponent}>{this.state.isUserComponentDisplay?'Hide':'Show'}</button>
+      
         {/* <input type="text" onChange={this.NameChangeHandler}/> */}
         {/* <Person changed={this.NameChangeHandler} name={this.state.persons[0].name} age={this.state.persons[0].age}><br/>This is children properties</Person> */}
         {/* <button onClick={this.SwitchStateHandler.bind(this,this.state.persons[0].name)}>Swith State</button> */}
@@ -53,4 +66,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+export default Radium(App);

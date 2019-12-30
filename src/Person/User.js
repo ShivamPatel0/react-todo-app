@@ -23,14 +23,16 @@ class User extends React.Component{
     }
 
     deleteItemHandler=(index)=>{
-        const allitems=[...this.state.userinput];
-        allitems.splice(index,1);
-        this.setState({
-            userinput: allitems
-        })
+        if(window.confirm('Want to delete this?')){
+            const allitems=[...this.state.userinput];
+            allitems.splice(index,1);
+            this.setState({
+                userinput: allitems
+            })
+        }        
     }
 
-    render(){        
+    render(){     
         const items=this.state.userinput.map((each_input,index)=>{
             return <p onClick={this.deleteItemHandler.bind(this,index)} key={index}>{each_input.name}</p>
         })
